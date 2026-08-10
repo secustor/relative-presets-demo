@@ -5,7 +5,7 @@
   "description": "Deliberately outdated dependencies, so Renovate has something to raise pull requests for.",
   "dependencies": {
     "@aws-sdk/client-s3": "3.400.0",
-    "lodash": "4.17.20"
+    "lodash": "4.18.1"
   },
   "devDependencies": {
     "typescript": "5.0.0"
