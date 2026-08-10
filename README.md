@@ -103,6 +103,28 @@ Only the first line matters for the feature. The other three are demonstration o
 
 Note that `renovate.json` uses the full `github>...` form. Relative references only work *inside* a preset — a repository's own configuration has no parent preset to resolve them against.
 
+## See it working
+
+The [open pull requests](https://github.com/secustor/relative-presets-demo/pulls) in this repository were raised by a real Renovate run using a build of the implementation branch. Every setting behind them arrived through a relative reference resolved at `v1.0.0`.
+
+Three of them are worth looking at:
+
+- **[#1 — lodash security update](https://github.com/secustor/relative-presets-demo/pull/1)** carries a `security` label. That label is set in `system/security.json`, which nothing references directly: `default.json` extends `./system/registries`, and `system/registries.json` extends `./security`. The label only exists if a two-level-deep relative chain resolved correctly. The same file's `dependencyDashboardOSVVulnerabilitySummary` is why the [Dependency Dashboard](https://github.com/secustor/relative-presets-demo/issues/3) lists CVEs.
+- **[#5 — AWS SDK](https://github.com/secustor/relative-presets-demo/pull/5)** was raised on branch `renovate/aws-sdk` rather than a per-dependency branch, because `groups/aws.json` grouped it. That file is reached from `default.json` through the root-relative `/groups/aws`.
+- **[#6 — update the catalog pin](https://github.com/secustor/relative-presets-demo/pull/6)** moves this repository's own `renovate.json` from `#v1.0.0` to `#v2.0.0`. This is the part that makes pinning practical: bump one line and the whole tree moves with it. Merge it and the three-day cooldown from `v2.0.0` starts applying, because the nested `automerge/non-breaking.json` is now resolved at the new tag.
+
+In the run log each relative entry appears rewritten to its absolute form before it is fetched:
+
+```text
+github>secustor/relative-presets-demo//system/registries#v1.0.0
+github>secustor/relative-presets-demo//system/security#v1.0.0
+github>secustor/relative-presets-demo//groups/aws#v1.0.0
+github>secustor/relative-presets-demo//schedules/business-hours#v1.0.0
+github>secustor/relative-presets-demo//automerge/non-breaking#v1.0.0
+```
+
+None of those five strings is written anywhere in this repository. Each one was derived from a relative reference plus the tag the consumer pinned.
+
 ## Trying it yourself
 
 ```bash
