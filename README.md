@@ -84,6 +84,25 @@ Two tags exist with deliberately different content:
 
 A consumer pinning `#v1.0.0` (see [`examples/consumer-renovate.json`](examples/consumer-renovate.json)) resolves `automerge/non-breaking.json` **at `v1.0.0`**, without any cooldown — even though that file is reached indirectly through `default.json`. Switch the pin to `#v2.0.0` and the cooldown appears. Nothing inside this repository changes between those two outcomes.
 
+## This repository consumes its own catalog
+
+Besides hosting the presets, this repository contains a small app with deliberately outdated dependencies (`package.json`, `Dockerfile`) so that Renovate has something real to raise pull requests for.
+
+Its own [`renovate.json`](renovate.json) extends the catalog at a pinned tag, exactly as any consumer would:
+
+```jsonc
+{
+  "extends": ["github>secustor/relative-presets-demo#v1.0.0"],
+  "schedule": ["at any time"],
+  "automerge": false,
+  "platformAutomerge": false
+}
+```
+
+Only the first line matters for the feature. The other three are demonstration overrides: the catalog schedules pull requests for business hours and automerges non-breaking updates, which for a demo would mean either no pull requests at all or pull requests that merge themselves within seconds. Repository config wins over presets, so those three lines keep the pull requests open and visible while everything else still arrives through relative references resolved at `v1.0.0`.
+
+Note that `renovate.json` uses the full `github>...` form. Relative references only work *inside* a preset — a repository's own configuration has no parent preset to resolve them against.
+
 ## Trying it yourself
 
 ```bash
