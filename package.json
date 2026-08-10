@@ -4,7 +4,7 @@
   "private": true,
   "description": "Deliberately outdated dependencies, so Renovate has something to raise pull requests for.",
   "dependencies": {
-    "@aws-sdk/client-s3": "3.400.0",
+    "@aws-sdk/client-s3": "3.1107.0",
     "lodash": "4.17.20"
   },
   "devDependencies": {
