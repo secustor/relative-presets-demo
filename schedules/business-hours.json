@@ -1,0 +1,5 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "Raise pull requests during business hours on weekdays.",
+  "schedule": ["after 9am and before 5pm every weekday"]
+}

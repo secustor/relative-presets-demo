@@ -1,0 +1,6 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "Registry behaviour, plus the shared security posture from the same directory.",
+  "extends": ["./security"],
+  "npmrcMerge": true
+}

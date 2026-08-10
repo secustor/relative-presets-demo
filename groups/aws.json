@@ -1,0 +1,11 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "Group AWS SDK updates and raise them during business hours only.",
+  "extends": ["/schedules/business-hours"],
+  "packageRules": [
+    {
+      "groupName": "AWS SDK",
+      "matchSourceUrls": ["https://github.com/aws/**"]
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "Automerge major updates, restricted to the quarterly window in the sibling directory.",
+  "extends": ["../schedules/quarterly"],
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["major"],
+      "automerge": true,
+      "dependencyDashboardApproval": true
+    }
+  ]
+}

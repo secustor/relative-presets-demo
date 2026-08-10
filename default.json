@@ -1,0 +1,10 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "Entry point for the demo catalog, composed entirely from relative references.",
+  "extends": [
+    "config:recommended",
+    "./system/registries",
+    "/groups/aws",
+    "./automerge/non-breaking"
+  ]
+}

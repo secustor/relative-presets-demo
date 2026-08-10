@@ -1,0 +1,5 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "Quarterly window for disruptive updates.",
+  "schedule": ["* * 1 */3 *"]
+}
