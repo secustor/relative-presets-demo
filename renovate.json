@@ -1,6 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["github>secustor/relative-presets-demo#v1.0.0"],
+  "extends": ["github>secustor/relative-presets-demo#v2.0.0"],
   "schedule": ["at any time"],
   "automerge": false,
   "platformAutomerge": false
